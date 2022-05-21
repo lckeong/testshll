@@ -46,10 +46,10 @@ ENV DEBIAN_FRONTEND noninteractive
 # sets the TimeZone, to be used inside the container
 ENV TZ Asia/Kolkata
 
-# rclone and fclone
+# rclone
 RUN curl https://rclone.org/install.sh | bash && \
     aria2c https://downloads.rclone.org/v1.58.1/rclone-v1.58.1-linux-amd64.zip && \
-    unzip rclone-v1.58.1-linux-amd64.zip && mv rclone-v1.58.1-linux-amd64/rclone /usr/bin/ && chmod +x /usr/bin/fclone && rm -r rclone-v1.58.1-linux-amd64
+    unzip rclone-v1.58.1-linux-amd64.zip && mv rclone-v1.58.1-linux-amd64/rclone /usr/bin/ && chmod +x /usr/bin/rclone && rm -r rclone-v1.58.1-linux-amd64
 
 #drive downloader
 RUN curl -L https://github.com/jaskaranSM/drivedlgo/releases/download/1.5/drivedlgo_1.5_Linux_x86_64.gz -o drivedl.gz && \
