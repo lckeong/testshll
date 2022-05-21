@@ -33,11 +33,6 @@ RUN apt-get update && apt-get install -y software-properties-common && \
     # clean up the container "layer", after we are done
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-RUN wget https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz && \
-    tar xvf ffmpeg*.xz && \
-    cd ffmpeg-*-static && \
-    mv "${PWD}/ffmpeg" "${PWD}/ffprobe" /usr/local/bin/
-
 ENV LANG C.UTF-8
 
 # we don't have an interactive xTerm
@@ -51,15 +46,8 @@ RUN curl https://rclone.org/install.sh | bash && \
     aria2c https://downloads.rclone.org/v1.58.1/rclone-v1.58.1-linux-amd64.zip && \
     unzip rclone-v1.58.1-linux-amd64.zip && mv rclone-v1.58.1-linux-amd64/rclone /usr/bin/ && chmod +x /usr/bin/rclone && rm -r rclone-v1.58.1-linux-amd64
 
-#drive downloader
-RUN curl -L https://github.com/jaskaranSM/drivedlgo/releases/download/1.5/drivedlgo_1.5_Linux_x86_64.gz -o drivedl.gz && \
-    7z x drivedl.gz && mv drivedlgo /usr/bin/drivedl && chmod +x /usr/bin/drivedl && rm drivedl.gz
-
 #ngrok
 RUN aria2c https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && unzip ngrok-stable-linux-amd64.zip && mv ngrok /usr/bin/ && chmod +x /usr/bin/ngrok
-
-#install rmega
-RUN gem install rmega
 
 # Copies config(if it exists)
 COPY . .
